@@ -1,0 +1,107 @@
+---
+output:
+  pdf_document:
+    fig_caption: yes
+    number_sections: yes
+bibliography: references.bib
+csl: associacao-brasileira-de-normas-tecnicas.csl
+urlcolor: black
+linkcolor: black
+fontsize: 12pt
+geometry: margin = 1.2in
+header-includes:
+- \usepackage{placeins}
+- \usepackage{fancyhdr}
+- \usepackage{setspace}
+- \usepackage{chngcntr}
+- \usepackage{microtype}
+- \usepackage{dcolumn}
+- \onehalfspacing
+- \counterwithin{figure}{section}
+- \counterwithin{table}{section}
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.path = '00_dissertation/figures/',
+                      echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+\pagenumbering{gobble}
+
+```{r child = '00a_title_page.Rmd'}
+```
+
+\newpage
+\pagestyle{fancy}
+
+\fancyhead[LE,RO]{}
+\fancyhead[LO,RE]{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\pagenumbering{roman}
+
+\fancyhead[CO,CE]{Abstract}
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+
+```{r child = '00b_abstract.Rmd'}
+```
+
+\newpage
+
+\fancyhead[CO,CE]{Table of Contents}
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\newpage
+
+\fancyhead[CO,CE]{List of Figures}
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+
+\newpage
+\fancyhead[CO,CE]{List of Tables}
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables
+
+\newpage
+\pagenumbering{arabic}
+\fancyhead[CO,CE]{Introduction}
+
+```{r child = '00c_intro.Rmd'}
+```
+
+\FloatBarrier
+\newpage
+\fancyhead[CO,CE]{Chapter 1 - The premium of territorialization strategies}
+
+```{r child = '01_premium.Rmd'}
+```
+
+\FloatBarrier
+\newpage
+\fancyhead[CO,CE]{Chapter 2 - The use(s) of individual budget amendments}
+
+```{r child = '02_iba.Rmd'}
+```
+
+\FloatBarrier
+\newpage
+\fancyhead[CO,CE]{Chapter 3 - The microrelations of nonprofit-public partnerships}
+
+```{r child = '03_nppp.Rmd'}
+```
+
+\FloatBarrier
+\newpage
+\fancyhead[CO,CE]{Conclusion}
+
+```{r child = '04_conclusion.Rmd'}
+```
+
+\FloatBarrier
+\newpage
+\fancyhead[CO,CE]{References}
+
+# References

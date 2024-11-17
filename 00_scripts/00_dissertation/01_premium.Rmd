@@ -1,0 +1,326 @@
+---
+output: pdf_document
+---
+
+# The concentration premium of incumbency advantage
+
+## Introduction
+
+This first chapter contributes to answer the question of: *if and which legislators seek to build territorial ties?* Diving in the electoral geography debate, I aim to show that, although concentrated voting patterns are not the most usual case among legislators, concentration is an important variable in the pursue of political careers -- not only for electoral purposes. The main hypothesis states that politicians seek to develop ties with territories to ground their political action and, in this movement, concentration tends to give larger returns in reelection chances especially for those with already “concentrated” voting patterns.
+
+In short, once elected, proportional representatives may seek to use the resources at their disposal -- or the *incumbency advantage* -- to follow territorialization strategies since it turns out to be, among other reasons, an effective way of representation. To test it, TSE georrefered voting data in large Brazilian municipalities is summarized in vertical and horizontal concentration indicators -- e.g., D, G -- to conduct a quasi-experiment based on a close-race regression discontinuity design (RDD). Besides, demographic ecological features at the level of poll stations are included in the models to look for correlational evidence of the interactions of incumbency with concentration profile of candidates, development and district magnitudes. Finally, unsupervised learning, at the level of the polling station, is used to draw the profile of “concentrated” voters to understand whose politician are most likely to benefit from territorialization.
+
+Next, I present the theoretical background supporting the main hypotheses of this chapter, then, I turn to the methods used to operationalize the envisioned tests and, finally, I show the preliminary results and discuss them in the following sections.
+
+## Theoretical background
+
+With roots on the early -- sociological and neoinstitutionalist [@abranches_presidencialismo_1988; @mainwaring_rethinking_1999] -- interpretations of the Brazilian polity after the redemocratization in the 1980s, concentration was recognized as a kind of curse of the candidate-centered electoral system that coupled very strong incentives to cultivate a personal vote -- due to the open-list proportional representation with large district magnitudes [@carey_incentives_1995]. The consequences of such an electoral connection [@mayhew_congress_2004] would privilege a kind of legislative behavior very much individualistic and parochialist one in opposition to a party-disciplined ideal able to overcome coordination issues [@cain_personal_1987; @mainwaring_rethinking_1999]. In sum, governability would be subjected to atomized negotiations with legislators, not rarely, associated with distributive concessions by the executive’s part [@ames_deadlock_2001; @pereira_partidos_2003].
+
+Further empirical evidence, mostly from the 1990s and 2000s, was decisive to show that much of the alleged consequences seemed unverified. Party discipline was more the rule than the exception and the ordinary legislator was sufficiently marginalized of the (centralized) legislative process to be able to extort the executive [@figueiredo_executivo_2001; @limongi_processo_2005]. Moreover, the hypothesis of the emergence of informal districts was unlikely, only a minor part of representatives had a clear pattern of concentration [@kinzo_padroes_2003; @avelino_concentracao_2011]. In short, concentration wasn’t that much relevant to be able to affect governability^[This research agenda disputed the prevalence of the two poles of the coalition-presidentialism equilibrium during the 2010s [@freitas_neoconstitucionalismo_2018], with fuzzier interpretations since Bolsonaro’s election in 2018.].
+
+Yet, ethnographic and survey evidence kept suggesting that the territory was of major importance through the eyes of the legislators [@kuschnir_eleicoes_2000; @carvalho_e_2003; @nicolau_o_2006]. Even if it seems that @ames_deadlock_2001 has stretched too far the pork hypothesis in the executive-legislative relationship, his innovative approach to the analysis of the electoral connection of Brazilian legislators helped to find some regularities associated with concentration voting patterns, concerning the representative-constituency relationship.
+
+The main opposition between concentrated and not concentrated representatives, mostly rooted in political sociology reasonings, denoted ultimately a kind of political representation much closer to the ground in the first case, attuned with a sense of place built over the construction of ties within (poor) communities and relying on a network of brokers able to bridge informational gaps [@kuschnir_eleicoes_2000]. Besides, legislators themselves consistently recognized territory related issues as pivotal in their representative tasks [@carvalho_e_2003; @nicolau_o_2006; @roeder_selecao_2017] and concentration was also associated with the overreliance on pork and even reelection odds [@pereira_successful_2003; @pereira_o_2007]. Therefore, concentration seemed a relevant variable in terms of political representation with positive and normative consequences.
+
+Positively, much attention was given, in further studies, to the use of individual budget amendments -- i.e., funds over legislators’ discretion -- with unclear results in terms of electoral effectiveness, although highlighting mechanisms concerning political parties and electoral campaign strategies [@mesquita_emendas_2008; @silva_uma_2009; @mesquita_emendas_2014; @barone_eleicoes_2014; @baiao_emendas_2016]. The impact on the legislative production was also an object of study, stressing again the marginality of the ordinary legislator in most cases [@amorim_neto_o_2003; @silva_o_2011; @silva_rebatizando_2013]. In turn, some discussions focused on the sensitivity of methodological choices, seeking to find: the better indicator to measure concentration; what spatial unit was the most appropriate to aggregate votes; and how to classify elected and unelected candidates. Most of time, confirming previous findings that the importance of concentration should not be overemphasized [@silva_uma_2009; @avelino_concentracao_2011; @avelino_concentracao_2016; @terron_ha_2012; @rodrigues-silveira_metropoli_2015; @correa_o_2016; @gelape_geografia_2017].
+
+Normatively, much was argued that concentration was not a desirable incentive to political representation because it undermined overall government’s responsiveness [@boix_political_2009]. By seeking to fulfill parochialist interests with pork, efficiency in resources allocation wouldn’t induce sustainable development [@bertholini_pork_2018]. Not rarely, such a view, was immediately associated with clientelism [@stokes_brokers_2013]. Yet, recent contributions advocated for a more comprehensive understanding of representation, highlighting that distributive politics may be nonprogrammatic, but much alleged clientelism, indeed, could be understood as constituency service [@bussell_clients_2019]. In fact, the visible facet of the electoral connection, would overshadow a proper territorial connection constitutive of representation and responsible to weave the fabric connecting representative and constituencies to enlighten the problems to be solved through political action [@hoyler_representacao_2022].
+
+This chapter draw on these contributions to study: *if and which legislators seek to build territorial ties?* Although concentrated voting patterns are not the most usual case among legislators, concentration is supposedly an important variable in the pursue of political careers, not strictly for electoral purposes, but also for the sake of representation itself. In other words, legislators seek to ground their political action, and, in this task, they would concentrate.
+
+This reasoning is not essentially new -- Fenno's [-@fenno_home_2003] seminal contribution already theorized constituencies as an arrangement of concentric circles. Nor is it deterministic since it is not hard to find exceptions. But it is expected that, in general, legislators will devote resources to try to build a territorial connection -- in a candidate-centered electoral rule, like the Brazilian one, it is even more likely [@crisp_institutional_2002; @crisp_vote-seeking_2004; @crisp_constituency_2004; @crisp_vote-earning_2013; @crisp_electoral_2020]. Moreover, in large municipalities, our case studies, it is expected to be even more important because of what John [-@john_why_2009] called *propinquity* -- i.e. the closeness of the urban space where actors are close together and tend to be small in number -- and due to institutional variables -- such as, the larger magnitude of their districts, the higher number of candidates and the more fragmented political market of larger municipalities in comparison with smaller ones [@silva_mesmas_2017], putting territories at stake [@hoyler_construcao_2021].
+
+Conditions to concentrate, however, are not evenly distributed. Resources, such as those coming from personal wealth, electoral campaign financing, occupation of political or bureaucrat positions and, last, but not least, incumbency may foster the task of building territorial ties [@boas_controlling_2011; @speck_study_2014; @klasnja_incumbency_2017; @gelape_apesar_2021]. Those conditions can be understood as supply-side determinants: ceteris paribus, a candidate with more resources would be more able to concentrate. On the demand-side, determinants would be associated with the electorate characteristics: sociodemographic, electoral behavior, access to services, territory -- i.e., ultimately, development [@avelino_sources_2022]. In short: ceteris paribus, concentration would be more likely where voters have scarcer resources.
+
+Taking advantage of a close-race RDD, I’ll focus on two mechanisms highlighted above for empirical tests. 
+
+First, following a rich discussion concerning the incumbency advantage in Brazil and abroad [@trounstine_evidence_2011; @boas_controlling_2011; @klasnja_incumbency_2017; @bueno_bypassing_2018; @meireles_carreiras_2019; @castro_multi-office_2021; @gelape_apesar_2021; @avelino_sources_2022], I will check if, all else equal, incumbency do induce (electoral) concentration. Therefore, the first hypothesis states that:
+
+*H1: Incumbents in moment t will have more concentrated voting patterns in t + 4 in comparison with challengers.*
+
+In other words, having access to resources related to incumbency in moment t, will make elected candidates to increase the concentration of their voting patterns in t + 4, in comparison with their concentration in moment t, and in a higher rate than challengers.
+
+Previous concentration patterns, however, should matter because it probably involves a specific “home style” that ease concentration. Although only correlational evidence can be provided, the first derivative hypothesis supposes that:
+
+*H1a: Incumbents with more concentrated voting patterns in moment t will have a higher concentration net effect in t + 4 in comparison with incumbent with less concentrated voting patterns.*
+
+This concentration net effect, however, will be more relevant to candidates with less “developed” constituencies’ ecological patterns. In this sense, the second derivative hypothesis affirms that:
+
+*H1b: Incumbents with lower constituencies’ educational metrics in moment t will have a higher concentration net effect in t + 4 in comparison with incumbents with higher constituencies’ educational metrics.*
+
+Again, evidence provided is only correlational and, in this case, it is based on ecological features. Yet, the test envisions to assess once more if a long-standing political sociology interpretation -- that put the burden of a concentrated electoral connection on poverty -- is sustained.
+
+Besides, since we find enough variation even in large municipalities in terms of district magnitudes, I aim at testing to what extent size is associated with concentration. Larger municipalities are expected to be more susceptible to territorialization than smaller ones, thus, the third derivative hypothesis supports that:
+
+*H1c: Incumbents in larger district magnitudes in moment t will have a higher concentration net effect in t + 4 in comparison with incumbents in smaller district magnitudes.*
+
+Finally, I draw on the interaction of the incumbency advantage with concentration to provide correlational evidence on how territorialization strategies may increase reelection chances. 
+So, the last hypothesis says that:
+
+*H2: Incumbents in moment t with higher concentration net effect in moment t + 4 are more likely to be reelected in t + 4, than incumbents with smaller concentration net effect.*
+
+## Methods
+
+Close-race RDD has been a popular tool to measure the incumbency (dis)advantage in Brazil and abroad [@trounstine_evidence_2011; @boas_controlling_2011; @klasnja_incumbency_2017; @bueno_bypassing_2018; @meireles_carreiras_2019; @castro_multi-office_2021; @gelape_apesar_2021; @avelino_sources_2022]. The intuition is that electoral disputes where candidates are elected or unelected by small margins would work as a kind of (as-if) randomization for those close enough to the threshold [@lee_randomized_2008]. In other words, those just above the number (or proportion, margin) of votes needed to be elected would be “lucky” and constitute a group very similar, on average, to those “unlucky” slightly below that number in all variables, except for incumbency itself. Therefore, mean differences observed between those groups could be credited to “treatment”, is this case, incumbency [@cattaneo_practical_2019].
+
+The drawback of the technique relies, mostly, in its generalizability. Since estimates are based on those close enough to the threshold, estimates are “local” and might not be immediately extrapolated for cases beyond that window. Put simply, it can be that incumbency, for instance, might be an (dis)advantage only for those in very competitive settings and not most voted legislators. Although some authors have argued that close-race RDD do not necessarily work as-if randomization, it has been widely used in the literature and a few tests can help to check if assumptions hold [@hyytinen_when_2018].
+
+The design for majoritarian contests is a bit simpler than the one used here for open-list proportional representation (OLPR). In the first case, usually the first and the second majoritarian competitors are included in the sample using the running variable of the margin of victory (or loss) of one in relation to the other. For OLPR, it can be used the same operationalization, but now considering each list as a particular dispute. Therefore, the last winner and the first loser of each list is included in the sample and the margins are calculated, again, one in relation to the other, pairwise by list [@hyytinen_when_2018; @gelape_apesar_2021]. A few methodologies include, besides this intraparty logic described above, also an interparty competition rule [@avelino_sources_2022] and alternatives to capture multi-office candidatures [@castro_multi-office_2021]. For the sake of this chapter, I’ll consider only the intraparty operationalization.
+
+Besides, although many works of OLPR close-race RDD are based on a sharp design -- i.e., being above or below the threshold defines treatment and not treatment with full compliance, respectively --, indeed, because local legislator occupy the lowest rank of proportional representatives, it is not uncommon that some of them climb the ladder in the four-year span between elections giving space for initially unelected substitutes (*suplentes*). Therefore, the fuzzy design -- i.e., RDD coupled with an instrumental variable -- would be more appropriate [@cattaneo_practical_2019]. That being said, for this moment, it will be ignored, hoping that it corresponds only to a marginal number of cases that, in fact, underestimates the effect of incumbency.
+
+Another technical point concerns the operationalization of the dependent variable: concentration. Since Ames’ [-@ames_electoral_1995] seminal contribution, concentration has been measured in its vertical and horizontal dimensions.
+
+The vertical dimension relates to the proportion of votes a specific candidate receives in a given spatial unit. Also denominated “dominance”, it is usually measured using the D indicator that captures the predominance of votes to a candidate in a given territory. Calculated as follows:
+
+$$ D = \sum_{t} \left( \dfrac{V_{ct}}{V_{t}} \times \dfrac{V_{ct}}{V_{c}} \right) $$
+
+Where: ${V_{ct}}$ is the number of votes of a specific candidate in a given territory; ${V_{t}}$ is the number of votes in a given territory; and ${V_{c}}$ is the number of votes of a specific candidate.
+
+The horizontal dimension relates to how votes are distributed in the territory. Candidates can receive their votes proportionally to the size of the electorate in each spatial unit, or they can receive votes in a disproportional rate in a few (nearby) spatial units. Many indicators were used to measure this dimension and the correlation between them is usually high [@gelape_geografia_2017]. For the sake of this chapter, horizontal concentration will be measured using the G indicator to capture how clustered are the voting patterns of a given candidate in the space. Calculated as follows:
+
+$$ G = \sum_{t} \left( \dfrac{V_{ct}}{V_{t}} - \dfrac{V_{ct}}{V} \right)^2 $$
+
+Where: ${V_{ct}}$ is the number of votes of a specific candidate in a given territory; ${V_{t}}$ is the number of votes in a given territory; and ${V}$ is the total number of votes.
+
+Finally, a last discussion shall be addressed concerning the spatial unit of analysis. Since votes need to be aggregated to generate concentration indicators, results can be sensitive to this choice. The literature has debated that the number of subdivisions has to be large enough to provide some resolution, but also small enough to avoid noise and to have sociological meaning [@rodrigues-silveira_metropoli_2015; @gelape_geografia_2017]. In this sense, there is a fine tune that must be met to permit that concentration is to be seen, but without putting in the same basket oranges and apples that do not share the same sense of place in a given spatial unit.
+
+Following Ames (2001), first evidence from electoral geography in Brazil used the municipalities as the spatial unit of analysis, a fair decision based on those parameters. At the intracity level, the neighborhood has been argued to be the most adequate option [@terron_ha_2012; @rodrigues-silveira_metropoli_2015; @gelape_geografia_2017]. However, information on those municipalities’ administrative subdivisions is not standardized. The option, for the sake of this chapter, was to use the census tract (*área de ponderação*) defined in the 2010 Brazilian Census by IBGE^[Available in: https://www.ibge.gov.br/geociencias/downloads-geociencias.html.], being the most disaggregated geographical level for the representative sample that the larger questionnaire is applied. It is about half the size of the number of neighborhoods in large municipalities and has the positive externality of being matched with Census information, as well as not being chosen at random, but trying to incorporate municipalities' administrative subdivisions.
+
+Therefore, TSE^[Available in: https://dadosabertos.tse.jus.br/.] data on polling locations, electorate profile, candidates and results concerning the two last municipalities’ elections -- 2016 and 2020 -- were systematized according to the following steps: (i) each binomial zone-section (*zona-seção*) -- the smallest disaggregation provided on data -- was associated with a polling location -- usually a school or another public or private equipment; (ii) each polling location was associated with a census tract through geoprocessing; (iii) results statistics were generated for every candidate at the zone-section level; (iv) information on census tract and zone-section were merged and indicator D and G were calculated and aggregated at the candidate level; (v) information on the electorate profile at the zone-section level weighted by the number of votes of each candidate at the zone-section was aggregated at the candidate level and merged to the former data frame; and (vi) at last, information on district magnitude was also added to the candidate level data frame.
+
+At the end of the day, the data frame was composed of every candidate that ran for a local legislator position in 2016 or 2020 in the chosen cities with columns containing the information of their D and G indicators, weighted ecological features of voters and district magnitude. For the sake of this chapter, all municipalities^[São Paulo, Rio de Janeiro, Fortaleza, Salvador, Belo Horizonte, Manaus, Curitiba, Recife, Goiânia, Porto Alegre, Belém, Guarulhos, Campinas and São Luís.] with one million inhabitants or above, according to the 2022 Census, were included in the analysis^[All codes used in this research dissertation are available in: https://github.com/lucascividanes/PhD-s-Dissertation-R-Scripts.].
+
+## Preliminary results
+
+```{r setup1, include = FALSE}
+library(tidyverse)
+library(rdrobust)
+library(sjPlot)
+library(sandwich) 
+library(lmtest)
+library(knitr)
+
+#setwd("G:/Meu Drive/Acadêmicos/Doutorado/PhD-s-Dissertation-R-Scripts")
+
+candidatos <- read_delim("G:/Meu Drive/Acadêmicos/Doutorado/PhD-s-Dissertation-R-Scripts/02_out/margins.csv", 
+                         delim = ";", escape_double = FALSE, col_types = cols(ANO_ELEICAO = col_character(), 
+                                                                              NR_CANDIDATO = col_character()), 
+                         locale = locale(decimal_mark = ",", grouping_mark = "."), 
+                         trim_ws = TRUE) 
+
+indicadores <- read_delim("G:/Meu Drive/Acadêmicos/Doutorado/PhD-s-Dissertation-R-Scripts/02_out/indicators.csv", 
+                          delim = ";", escape_double = FALSE, col_types = cols(ANO_ELEICAO = col_character(), 
+                                                                               NR_VOTAVEL = col_character()),
+                          locale = locale(decimal_mark = ",", grouping_mark = "."), trim_ws = TRUE) %>% 
+  select(ANO_ELEICAO, NM_MUNICIPIO, NR_VOTAVEL, D, HH, G)
+
+perfil <- read_delim("G:/Meu Drive/Acadêmicos/Doutorado/PhD-s-Dissertation-R-Scripts/02_out/profile.csv", 
+                       delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
+                                                                           grouping_mark = "."),
+                     col_types = cols(ANO_ELEICAO = col_character(), 
+                                      NR_VOTAVEL = col_character()), trim_ws = TRUE) %>% 
+  select(ANO_ELEICAO, NM_MUNICIPIO, NR_VOTAVEL, PCT_ELEITORES_PERFIL_GENERO_FEM:PCT_ELEITORES_PERFIL_ESC_SUP)
+
+distrito <- read_delim("G:/Meu Drive/Acadêmicos/Doutorado/PhD-s-Dissertation-R-Scripts/02_out/dist_mag.csv", 
+                       delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
+                                                                           grouping_mark = "."),
+                       col_types = cols(ANO_ELEICAO = col_character()), trim_ws = TRUE) %>% 
+  select(ANO_ELEICAO, NM_MUNICIPIO, DIST_MAG)
+
+candidatos <- candidatos %>% 
+  left_join(indicadores, by = c("ANO_ELEICAO", "NM_MUNICIPIO", "NR_CANDIDATO" = "NR_VOTAVEL")) %>% 
+  left_join(perfil, by = c("ANO_ELEICAO", "NM_MUNICIPIO", "NR_CANDIDATO" = "NR_VOTAVEL")) %>% 
+  left_join(distrito, by = c("ANO_ELEICAO", "NM_MUNICIPIO"))
+```
+
+At first, descriptive statistics show an advantage in terms of concentration for candidates seeking reelection in the vertical dimension and a disadvantage in terms of the horizontal one, as shown in Figure \ref{fig:boxplots_D_G} cases. Overall, incumbents running for a subsequent term -- i.e., conditional on running -- tend to receive larger proportions of votes in specific spatial units, but they have a more dispersed geographical voting pattern, confirming once more previous findings already highlighted by the literature [@avelino_concentracao_2011; @avelino_concentracao_2016]. The median, however, is fairly low in both cases. For the pool of candidates ($N\approx29000$), D is equal to 0,01 for incumbents against 0,0008 for challengers and G is 0,01 for incumbents against 0,05 for challengers, a ten and five-times proportional difference, respectively.
+
+```{r boxplots_D_G, fig.cap = "Boxplots of D and G indicators for each year of analysis. Source: author. Data: TSE.", warning = FALSE, echo = FALSE, fig.show='hold', out.width="50%"}
+candidatos %>%
+  subset(!is.na(D) & !is.na(ST_REELEICAO) & ST_REELEICAO != "Não divulgável") %>% 
+  ggplot(aes(x = ST_REELEICAO, y = D, fill = ST_REELEICAO)) +
+  geom_boxplot() +
+  theme_minimal() +
+  facet_wrap(~ANO_ELEICAO)
+
+candidatos %>%
+  subset(!is.na(G) & !is.na(ST_REELEICAO) & ST_REELEICAO != "Não divulgável") %>% 
+  ggplot(aes(x = ST_REELEICAO, y = G, fill = ST_REELEICAO)) +
+  geom_boxplot() +
+  theme_minimal() +
+  facet_wrap(~ANO_ELEICAO)
+```
+
+Looking at the difference of D and G indicators in t + 4 minus t, or delta D and delta G, when considered only sophomore candidates -- i.e., conditional on running for two elections in a row -- in the chosen cities ($N\approx2400$), it seems unlikely that concentration is favored by the incumbency advantage. As presented on Figure \ref{fig:boxplots_d_D_d_G}, the distribution is very symmetric in both cases and more dispersed for challengers. On average, though, sophomore incumbents tend to decrease their concentration, vertically, in -0,004 and, horizontally, in -0,009. Sophomore challengers also face a slight reduction in D, of -0,001, on average, and they actually increase their G by +0,002.
+
+```{r boxplots_d_D_d_G, fig.cap = "Boxplots of delta D and delta G between the four-years span. Source: author. Data: TSE.", warning = FALSE, echo = FALSE, fig.show='hold', out.width="50%"}
+df <- candidatos %>%
+  subset(!is.na(NR_CPF_CANDIDATO)) %>%
+  distinct(ANO_ELEICAO, NR_CPF_CANDIDATO, .keep_all = T) %>%
+  subset(ANO_ELEICAO == "2020") %>% 
+  left_join(subset(candidatos, ANO_ELEICAO == "2016", select = c("NR_CPF_CANDIDATO", "DS_SIT_TOT_TURNO", "QT_VOTOS", "MARGEM", "ST_REELEICAO",
+                                                                 "D", "HH", "G",
+                                                                 "PCT_ELEITORES_PERFIL_GENERO_FEM", "PCT_ELEITORES_PERFIL_GENERO_MASC",     
+                                                                 "PCT_ELEITORES_PERFIL_FX_ETARIA_16A34", "PCT_ELEITORES_PERFIL_FX_ETARIA_35A59", 
+                                                                 "PCT_ELEITORES_PERFIL_FX_ETARIA_60MAIS", "PCT_ELEITORES_PERFIL_ESC_FUND",        
+                                                                 "PCT_ELEITORES_PERFIL_ESC_MED", "PCT_ELEITORES_PERFIL_ESC_SUP",
+                                                                 "DIST_MAG")), by = "NR_CPF_CANDIDATO") %>% 
+  rename("DS_SIT_TOT_TURNO_2020" = "DS_SIT_TOT_TURNO.x", "DS_SIT_TOT_TURNO_2016" = "DS_SIT_TOT_TURNO.y",
+         "QT_VOTOS_2020" = "QT_VOTOS.x", "QT_VOTOS_2016" = "QT_VOTOS.y",
+         "MARGEM_2020" = "MARGEM.x", "MARGEM_2016" = "MARGEM.y",
+         "ST_REELEICAO_2020" = "ST_REELEICAO.x", "ST_REELEICAO_2016" = "ST_REELEICAO.y",
+         "D_2020" = "D.x", "D_2016" = "D.y",
+         "HH_2020" = "HH.x","HH_2016" = "HH.y",
+         "G_2020" = "G.x", "G_2016" = "G.y",
+         "PCT_ELEITORES_PERFIL_GENERO_FEM_2020" = "PCT_ELEITORES_PERFIL_GENERO_FEM.x",
+         "PCT_ELEITORES_PERFIL_GENERO_FEM_2016" = "PCT_ELEITORES_PERFIL_GENERO_FEM.y",
+         "PCT_ELEITORES_PERFIL_GENERO_MASC_2020" = "PCT_ELEITORES_PERFIL_GENERO_MASC.x",
+         "PCT_ELEITORES_PERFIL_GENERO_MASC_2016" = "PCT_ELEITORES_PERFIL_GENERO_MASC.y",
+         "PCT_ELEITORES_PERFIL_FX_ETARIA_16A34_2020" = "PCT_ELEITORES_PERFIL_FX_ETARIA_16A34.x",
+         "PCT_ELEITORES_PERFIL_FX_ETARIA_16A34_2016" = "PCT_ELEITORES_PERFIL_FX_ETARIA_16A34.y",
+         "PCT_ELEITORES_PERFIL_FX_ETARIA_35A59_2020" = "PCT_ELEITORES_PERFIL_FX_ETARIA_35A59.x",
+         "PCT_ELEITORES_PERFIL_FX_ETARIA_35A59_2016" = "PCT_ELEITORES_PERFIL_FX_ETARIA_35A59.y",
+         "PCT_ELEITORES_PERFIL_FX_ETARIA_60MAIS_2020" = "PCT_ELEITORES_PERFIL_FX_ETARIA_60MAIS.x",
+         "PCT_ELEITORES_PERFIL_FX_ETARIA_60MAIS_2016" = "PCT_ELEITORES_PERFIL_FX_ETARIA_60MAIS.y",
+         "PCT_ELEITORES_PERFIL_ESC_FUND_2020" = "PCT_ELEITORES_PERFIL_ESC_FUND.x",
+         "PCT_ELEITORES_PERFIL_ESC_FUND_2016" = "PCT_ELEITORES_PERFIL_ESC_FUND.y",
+         "PCT_ELEITORES_PERFIL_ESC_MED_2020" = "PCT_ELEITORES_PERFIL_ESC_MED.x",
+         "PCT_ELEITORES_PERFIL_ESC_MED_2016" = "PCT_ELEITORES_PERFIL_ESC_MED.y",
+         "PCT_ELEITORES_PERFIL_ESC_SUP_2020" = "PCT_ELEITORES_PERFIL_ESC_SUP.x",
+         "PCT_ELEITORES_PERFIL_ESC_SUP_2016" = "PCT_ELEITORES_PERFIL_ESC_SUP.y",
+         "DIST_MAG_2020" = "DIST_MAG.x",
+         "DIST_MAG_2016" = "DIST_MAG.y") %>% 
+  mutate(d_D_2020_2016 = D_2020 - D_2016,
+         d_HH_2020_2016 = HH_2020 - HH_2016,
+         d_G_2020_2016 = G_2020 - G_2016,
+         TRATAMENTO_2016 = case_when(DS_SIT_TOT_TURNO_2016 %in% c("ELEITO POR QP", "ELEITO POR MÉDIA") ~ "1",
+                                     DS_SIT_TOT_TURNO_2016 %in% c("SUPLENTE", "NÃO ELEITO") ~ "0"))
+
+df %>%
+  subset(!is.na(d_D_2020_2016) & !is.na(TRATAMENTO_2016)) %>% 
+  ggplot(aes(x = TRATAMENTO_2016, y = d_D_2020_2016, fill = TRATAMENTO_2016)) +
+  geom_boxplot() +
+  theme_minimal()
+
+df %>%
+  subset(!is.na(d_G_2020_2016) & !is.na(TRATAMENTO_2016)) %>% 
+  ggplot(aes(x = TRATAMENTO_2016, y = d_G_2020_2016, fill = TRATAMENTO_2016)) +
+  geom_boxplot() +
+  theme_minimal()
+```
+
+The scatterplots of delta D and delta G in relation to vote margins and concentration, both on moment t, help to illuminate that much reduction on delta is to be found on candidates with more concentrated voting patterns at the first place, as shown in Figure \ref{fig:scatterplots_d_D_d_G_margin_concentration}. In short, it can be said that concentration metrics vary little between elections, in general, but with reasonable variance closer to the threshold. Moreover, two tendencies are to be observed in terms of concentration: firstly, “concentrated” candidates, indeed, tend to “disperse” their votes in between elections; and, secondly, it seems to exist a saturation point where concentration finds increasing constraints to advance, although, in a slower rate, in terms of vertical concentration, and in a higher rate, in terms of horizontal concentration, when incumbents and challengers are compared, respectively.
+
+```{r scatterplots_d_D_d_G_margin_concentration, fig.cap = "Scatterplots of delta D and delta G in terms of margin and concentration in moment t. Source: author. Data: TSE.", warning = FALSE, echo = FALSE, fig.show='hold', out.width="50%", message = FALSE}
+df %>%
+  subset(!is.na(d_D_2020_2016)) %>% 
+  ggplot(aes(x = MARGEM_2016, y = d_D_2020_2016, color = TRATAMENTO_2016)) +
+  geom_point() +
+  geom_smooth() +
+  theme_minimal()
+
+df %>%
+  subset(!is.na(d_D_2020_2016)) %>% 
+  ggplot(aes(x = D_2016, y = d_D_2020_2016, color = TRATAMENTO_2016)) +
+  geom_point() +
+  geom_smooth() +
+  theme_minimal()
+
+df %>%
+  subset(!is.na(d_G_2020_2016)) %>% 
+  ggplot(aes(x = MARGEM_2016, y = d_G_2020_2016, color = TRATAMENTO_2016)) +
+  geom_point() +
+  geom_smooth() +
+  theme_minimal()
+
+df %>%
+  subset(!is.na(d_G_2020_2016)) %>% 
+  ggplot(aes(x = G_2016, y = d_G_2020_2016, color = TRATAMENTO_2016)) +
+  geom_point() +
+  geom_smooth() +
+  theme_minimal()
+```
+
+Still, when comparing all sophomore candidates, we are probably including confounding variables to the analysis. To test if the incumbency advantage may reinforce concentration in competitive settings, I restricted our sample to the candidates with 20% margin of victory/loss ($N\approx250$) to assess if local average treatment effects (LATE) are to be found in close-races where incumbency shall be assigned as-if random. Table 1.1 presents the balance test for the restricted sample for covariates concerning a set of weighted constituencies’ ecological features:
+
+\tiny
+
+```{r balance, warning = FALSE, echo = FALSE}
+df_rdd <- df %>%
+  subset(MARGEM_2016 <= 0.20 & MARGEM_2016 >= -0.20 & !is.na(d_D_2020_2016))
+tab_balance <- data.frame()
+
+var_balance <-  data.frame(nome = c("Percentage of female electorate (2016)",
+                                    "Percentage of male electorate (2016)",
+                                    "Percentage of electorate with middle school as highest education (2016)",
+                                    "Percentage of electorate with high school as highest education (2016)",
+                                    "Percentage of electorate with college as highest education (2016)",
+                                    "Percentage of electorate with 16 to 34 years old (2016)",
+                           "Percentage of electorate with 35 to 59 years old (2016)",
+                           "Percentage of electorate with 60 years old or more (2016)"),
+                           var = c("PCT_ELEITORES_PERFIL_GENERO_FEM_2016",
+                                   "PCT_ELEITORES_PERFIL_GENERO_MASC_2016",
+                                   "PCT_ELEITORES_PERFIL_ESC_FUND_2016",
+                                   "PCT_ELEITORES_PERFIL_ESC_MED_2016",
+                                   "PCT_ELEITORES_PERFIL_ESC_SUP_2016",
+                                   "PCT_ELEITORES_PERFIL_FX_ETARIA_16A34_2016",
+                                   "PCT_ELEITORES_PERFIL_FX_ETARIA_35A59_2016",
+                                   "PCT_ELEITORES_PERFIL_FX_ETARIA_60MAIS_2016"))
+
+for (i in var_balance$var){
+  aux <- df_rdd %>% select(VARIABLE = paste(i), MARGEM_2016)
+  out <- rdrobust(aux$VARIABLE, aux$MARGEM_2016)
+  tab_balance <- rbind(tab_balance, cbind(Variable = var_balance$nome[var_balance$var == i],
+                                          Bandwidth = round(out$bws[1, 1], 4),
+                                          Coef = round(out$coef[3, 1], 4),
+                                          `p-value` = round(out$pv[3, 1], 4),
+                                          CI = str_c("[", round(out$ci[3, 1], 4), ", ", round(out$ci[3, 2], 4), "]"),
+                                          `Effective N` = sum(out$N)))
+  
+}
+
+kable(tab_balance, caption = "Balance Tests for Ecological Constituencies' Features. Source: author. Data: TSE.")
+```
+
+\normalsize
+
+Using the *rdrobust* package in R, I’ve inspected visually the LATE considering an evenly spaced margin of victory and the average of delta D and delta G in each interval, as presented in Figure \ref{fig:rdplot}. To estimate the LATE, a linear local model considering a triangular kernel was used with an optimal bandwidth to minimize the mean squared error (effective number of observations equal to 105 and 89 for D and G, respectively). Finally, robust standard errors were clustered at the municipality level.
+
+The point estimation to the effect of incumbency advantage is equal to +0,007 for delta D -- equivalent to 72% of the median D indicator in the restricted dataset --, however, with a p-value of 0,5 -- unable to reject the null hypothesis -- when considering the optimal bandwidth of 0,074, a robust 95% confidence interval varying from -0,012 to +0,026. In turn, point estimation for delta G is equal to +0,028 -- equivalent to 140% of the median G indicator in the restricted dataset -- with a p-value of 0,3, optimal bandwidth of 0,057 and robust 95% confidence interval varying from -0,027 and +0,097.
+
+```{r rdplot, fig.cap = "RD plots for delta D and delta G in terms of margin in moment t. Source: author. Data: TSE.", warning = FALSE, echo = FALSE, fig.show='hold', out.width="50%"}
+out <- rdplot(df_rdd$d_D_2020_2016, df_rdd$MARGEM_2016, nbins = c(20, 20), binselect = "es", x.label = "MARGEM_2016", y.label = "d_D_2020_2016")
+out <- rdplot(df_rdd$d_G_2020_2016, df_rdd$MARGEM_2016, nbins = c(20, 20), binselect = "es", x.label = "MARGEM_2016", y.label = "d_G_2020_2016")
+```
+
+To look for heterogeneity effects of incumbency, I draw on models^[All calculated for the optimal bandwidth that minimizes the mean squared errors (0,089) and considering robust standard errors clustered at the municipality level. Robust analyses were made considering quadratic and cubic analyses as well, although only linear inference was presented.] including interaction variables in terms of concentration, educational constituencies’ ecological features and district magnitude, respectively. Figure \ref{fig:interaction} show the heterogeneity effects for concentration in its vertical dimension, the only significative interaction term -- without considering robust standard errors --, although not a substantive one. An incumbent with the double of the median in the D indicator in moment t is better able to keep the same level of vertical concentration in moment t + 4 than challengers, although in both cases there might be a reduction.
+
+```{r interaction, fig.cap = "Marginal effects of interaction terms of incumbency and D indicator on moment t. Source: author. Data: TSE.", warning = FALSE, echo = FALSE, fig.show='hold', out.width="50%", fig.align='center'}
+#out <- rdbwselect(df_rdd$d_D_2020_2016, df_rdd$MARGEM_2016, kernel = "triangular", p = 1, all = TRUE)
+#summary(out)
+
+df_rdd_bw <- subset(df_rdd, MARGEM_2016 <= 0.074 & MARGEM_2016 >= -0.074)
+
+mod <- lm(d_D_2020_2016 ~ TRATAMENTO_2016*D_2016 + MARGEM_2016, data = df_rdd_bw)
+#summary(mod)
+#mod_cluster <- vcovCL(mod, cluster = df_rdd_bw$CD_MUNICIPIO)
+#coeftest(mod, vcov. = mod_cluster)
+#confint(mod, vcov. = mod_cluster)
+set_theme(theme_minimal())
+plot_model(mod, type = "pred", terms = c("TRATAMENTO_2016", "D_2016 [0.010, 0.020]"))
+```
+
+Finally, increasing delta D or delta G do not correlate with the probability of reelection conditional on running in t + 4.
+
+## Discussion
+
+Thus far, results are preliminary and, therefore, somewhat exploratory. In short, the inclusion of only two electoral years in the analysis and the consideration of a limited set of cities leave much room for the type II kind of error also known as false negative. Further explorations are intended to expand the time series considered in the study and to encompass a larger number of municipalities, as well as take into consideration interparty dynamics of competition. There are two challenges in this movement. Firstly, georrefered information -- latitude and longitude -- of poll stations are available only since 2016 in TSE data. Of course, one can extrapolate 2016 locations for previous years, according to the binomial zone-section, but certainly adding some noise to the measurements -- able to be estimated though. Secondly, as cities get smaller, the number of spatial unit subdivisions get smaller too, being too little in some cases to find a balance in the tradeoff between resolution and sociological meaning described in the methodological section. Recent studies faced this problem trying to build quasi-optimal polygons associated with each poll station [@pratschke_electoral_2023]. In other words, finding the closest poll station for each census block (*setor censitário*) to compound the spatial unit of analysis. Again, the tradeoff may be unbalanced on the resolution-side in this case, but still it is a good strategy to test sensitivity.
+
+For now, in terms of hypotheses, in all cases, it is not possible to reject the null assumption -- considering the small sample size and robust standard errors. Yet, a naïve interpretation -- looking only at point estimations and regular standard errors -- suggests that H1 and H1a has a chance of being confirmed with a larger sample. Other hypotheses are less likely be confirmed even with a larger sample size, particularly in terms of a substantive effect.
+
+In sum, the preliminary findings suggest that in a competitive setting, the incumbency advantage could favor electoral concentration (*H1*), in fact, a substantive one -- not significative, though, for that sample size. Yet, it is only a relational increase. In other words, it does not imply a positive net effect in the four-years span for incumbents, but a major resilience to hold their concentration status in comparison with challengers. Put simply, to hold momentum. Moreover, higher vertical concentration, “dominance”, in moment t, is associated with an increased heterogeneity effect of the incumbency advantage (*H1a*) -- again, not significative when taken robust standard errors into account for that sample size. This results could suggest that territorialization strategies are important for a subset of incumbents or type of legislator, the “dominant” one.
+
+Many possible mechanisms already highlighted by the literature could help in the interpretation of these preliminary results. Firstly, it must be recognized that much of the alluded effect of concentration was systematically confronted by empirical findings [@kinzo_padroes_2003; @silva_uma_2009; @avelino_concentracao_2011; @avelino_concentracao_2016; @silva_mesmas_2017]. Secondly, even if territorialization was an ultimate goal for every incumbent, it not necessarily would be translated in systematic electoral concentrated outcomes. There is a long chain of events that bridges the gap between territorial connection towards an effective electoral connection [@kuschnir_eleicoes_2000; @hoyler_representacao_2022]. Besides, the territorial connection is, indeed, a compound of microrelations that may be hard to grasp in aggregated spatial units like the ones considered in this study [@marwell_microrelations_2020].
+
+Finally, a few limitations shall be discussed. Primarily, only conditional statistics are possible to be assessed with the proposed methodology. When considering the delta concentration, just sophomore candidates can be taken into account. Hence, it can be that candidates with little chances of (re)election in moment t + 4 give up on running and it can bias estimates. It is hard to say to which direction though. Moreover, a long road, in terms of robust and sensitivity analyses, alternative specifications and validation and falsification of RDD assumptions [@de_la_cuesta_misunderstandings_2016; @cattaneo_practical_2019], is still to be traveled. Not to mention other methodology, based on observational econometric models, for instance, that can also be useful tools to answer the questions this chapter is concerned about.

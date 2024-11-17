@@ -1,6 +1,6 @@
 library(tidyverse)
 
-municipios <- data.frame(UF = c("SP", "RJ", "CE", "BA", "MG", "AM", "PR", "PE", "GO", "RS", "PA", "SP", "SP", "MA"),
+municipalities <- data.frame(UF = c("SP", "RJ", "CE", "BA", "MG", "AM", "PR", "PE", "GO", "RS", "PA", "SP", "SP", "MA"),
                          MUN = c("SÃO PAULO", "RIO DE JANEIRO", "FORTALEZA", "SALVADOR",
                                  "BELO HORIZONTE", "MANAUS", "CURITIBA", "RECIFE",
                                  "GOIÂNIA", "PORTO ALEGRE", "BELÉM", "GUARULHOS", "CAMPINAS", "SÃO LUÍS"))
@@ -11,34 +11,34 @@ for (ano in c("2016", "2020")) {
   
   print(ano)
   
-  for (uf in municipios$UF) {
+  for (mun in municipalities$MUN) {
     
-    print(unique(municipios$MUN[municipios$UF == uf]))
+    print(mun)
     
-    votacao_secao <- read_delim(str_c("in/votacao_secao_", ano, "_", uf, ".csv"),
+    votacao_secao <- read_delim(str_c("01_in/TSE/votacao_secao_", ano, "_", municipalities$UF[municipalities$MUN == mun], ".csv"),
                                 delim = ";", escape_double = FALSE, locale = locale(decimal_mark = ",", 
                                                                                     grouping_mark = ".", encoding = "latin1"),
                                 trim_ws = TRUE) %>% 
-      subset(NM_MUNICIPIO %in% municipios$MUN & CD_TIPO_ELEICAO == 2 & CD_CARGO == 13) %>% 
+      subset(NM_MUNICIPIO == mun & CD_TIPO_ELEICAO == 2 & CD_CARGO == 13) %>% 
       group_by(ANO_ELEICAO, SG_UF, CD_MUNICIPIO, NM_MUNICIPIO, NR_LOCAL_VOTACAO, NM_LOCAL_VOTACAO, DS_LOCAL_VOTACAO_ENDERECO, NR_ZONA, NR_SECAO, NR_VOTAVEL, NM_VOTAVEL) %>% 
       summarise(QT_VOTOS = sum(QT_VOTOS, na.rm = T)) %>% 
       ungroup() %>% 
       mutate(NR_ZONA = str_pad(NR_ZONA, 5, "left", "0"),
              NR_SECAO = str_pad(NR_SECAO, 5, "left", "0"))
     
-    local <- read_delim("out/local.csv", 
+    poll <- read_delim("02_out/poll.csv", 
                         delim = ";", escape_double = FALSE, col_types = cols(AA_ELEICAO = col_character(), NR_LOCAL_VOTACAO = col_character(), 
                                                                              NR_ZONA = col_character(), NR_SECAO = col_character(), 
                                                                              CD_APONDE = col_character()), locale = locale(decimal_mark = ",", 
                                                                                                                            grouping_mark = "."), trim_ws = TRUE) %>%
-      subset(AA_ELEICAO == ano & NM_MUNICIPIO %in% municipios$MUN[municipios$UF == uf]) %>% 
+      subset(AA_ELEICAO == ano & NM_MUNICIPIO == mun) %>% 
       mutate(NR_ZONA = str_pad(NR_ZONA, 5, "left", "0"),
              NR_SECAO = str_pad(NR_SECAO, 5, "left", "0")) %>% 
       select(NR_ZONA, NR_SECAO, CD_APONDE) %>% 
       arrange(NR_ZONA, NR_SECAO, CD_APONDE)
     
     votacao_secao <- votacao_secao %>%
-      left_join(local, by = c("NR_ZONA", "NR_SECAO")) %>% 
+      left_join(poll, by = c("NR_ZONA", "NR_SECAO")) %>% 
       group_by(ANO_ELEICAO, SG_UF, CD_MUNICIPIO, NM_MUNICIPIO, NR_VOTAVEL, NM_VOTAVEL, CD_APONDE) %>%
       summarise(QT_VOTOS_VER_TER = sum(QT_VOTOS, na.rm = T)) %>% 
       ungroup()
@@ -46,7 +46,8 @@ for (ano in c("2016", "2020")) {
     votacao_ver_ter <- votacao_secao %>% subset(NR_VOTAVEL >= 10000) %>% select(NR_VOTAVEL, NM_VOTAVEL, CD_APONDE, QT_VOTOS_VER_TER)
     votacao_ver_total <- votacao_ver_ter %>% group_by(NR_VOTAVEL, NM_VOTAVEL) %>% summarise(QT_VOTOS_VER_TOTAL = sum(QT_VOTOS_VER_TER, na.rm = T))
     votacao_ter <- votacao_secao %>% group_by(CD_APONDE) %>% summarise(QT_VOTOS_TER = sum(QT_VOTOS_VER_TER, na.rm = T)) %>% na.omit()
-    
+    #votacao_total <- votacao_secao %>% group_by(NM_MUNICIPIO) %>% summarise(QT_VOTOS_MUN = sum(QT_VOTOS_VER_TER, na.rm = T))
+      
     aux_df_ind <- data.frame()
     
     for(j in sort(unique(votacao_ter$CD_APONDE))) {
@@ -67,6 +68,7 @@ for (ano in c("2016", "2020")) {
       left_join(votacao_ver_ter, by = c("NR_VOTAVEL", "NM_VOTAVEL", "CD_APONDE")) %>% 
       left_join(votacao_ver_total, by = c("NR_VOTAVEL", "NM_VOTAVEL")) %>% 
       left_join(votacao_ter, by = c("CD_APONDE")) %>% 
+      #left_join(votacao_total, by = c("NM_MUNICIPIO")) %>%
       mutate(QT_VOTOS_TOTAL = sum(votacao_secao$QT_VOTOS_VER_TER, na.rm = T))
     
     aux_df_ind$QT_VOTOS_VER_TER[is.na(aux_df_ind$QT_VOTOS_VER_TER)] <- 0
@@ -83,13 +85,15 @@ for (ano in c("2016", "2020")) {
     
     aux_df_ind$G_aux <- (aux_df_ind$QT_VOTOS_VER_TER / aux_df_ind$QT_VOTOS_VER_TOTAL - aux_df_ind$QT_VOTOS_TER / aux_df_ind$QT_VOTOS_TOTAL)^2
     
-    aux_df_ind <- aux_df_ind %>% group_by(ANO_ELEICAO, SG_UF, CD_MUNICIPIO, NM_MUNICIPIO, NR_VOTAVEL, NM_VOTAVEL) %>%
+    aux_df_ind <- aux_df_ind %>%
+      group_by(ANO_ELEICAO, SG_UF, CD_MUNICIPIO, NM_MUNICIPIO, NR_VOTAVEL, NM_VOTAVEL, QT_VOTOS_TOTAL) %>%
       summarise(D = sum(D_aux, na.rm = T),
                 HH = sum(HH_aux, na.rm = T),
                 G = sum(G_aux, na.rm = T)) %>%
       left_join(votacao_ver_total, by = c("NR_VOTAVEL", "NM_VOTAVEL")) %>% 
       mutate(CD_MUNICIPIO = str_pad(CD_MUNICIPIO, 5, "left", "0"),
-             NR_VOTAVEL = str_pad(NR_VOTAVEL, 5, "left", "0"))
+             NR_VOTAVEL = str_pad(NR_VOTAVEL, 5, "left", "0"),
+             PCT_VOTOS_VER_TOTAL = QT_VOTOS_VER_TOTAL / QT_VOTOS_TOTAL)
     
     df_ind <- rbind(df_ind, aux_df_ind)
     
@@ -100,4 +104,4 @@ for (ano in c("2016", "2020")) {
 df_ind <- df_ind %>% 
   mutate(ANO_ELEICAO = as.character(ANO_ELEICAO))
 
-write.csv2(df_ind, "02 out/indicadores.csv", row.names = F, fileEncoding = "UTF-8")
+write.csv2(df_ind, "02_out/indicators.csv", row.names = F, fileEncoding = "UTF-8")
