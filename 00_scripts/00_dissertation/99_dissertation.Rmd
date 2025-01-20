@@ -74,7 +74,7 @@ knitr::opts_chunk$set(fig.path = '00_dissertation/figures/',
 
 \FloatBarrier
 \newpage
-\fancyhead[CO,CE]{Chapter 1 - The premium of territorialization strategies}
+\fancyhead[CO,CE]{Chapter 1 - The concentration premium of incumbency advantage}
 
 ```{r child = '01_premium.Rmd'}
 ```
